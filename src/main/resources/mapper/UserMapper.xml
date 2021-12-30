@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.arithmetic.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.arithmetic.pojo.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`, grade, email, avatar
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from `user`
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.arithmetic.pojo.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user` (username, `password`, grade, 
+      email, avatar)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.arithmetic.pojo.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.arithmetic.pojo.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.arithmetic.pojo.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
