@@ -3,6 +3,8 @@ package com.example.arithmetic.mapper;
 import com.example.arithmetic.pojo.entity.Question;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author zcw
  */
@@ -19,4 +21,8 @@ public interface QuestionMapper {
     int updateByPrimaryKeySelective(Question record);
 
     int updateByPrimaryKey(Question record);
+
+    void insertList(List<Question> list);
+
+    List<Question> selectByGroup(Integer groupId);
 }

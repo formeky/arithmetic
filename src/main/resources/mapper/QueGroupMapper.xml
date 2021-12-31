@@ -123,5 +123,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
+  <select id="listQueGroup" resultType="com.example.arithmetic.pojo.entity.QueGroup">
+    select
+    <include refid="Base_Column_List" />
+    from que_group
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+    </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.example.arithmetic.handler;
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
+import com.example.arithmetic.exception.CaptchaException;
+import com.example.arithmetic.exception.UserExistedException;
 import com.example.arithmetic.pojo.enums.StatusEnum;
 import com.example.arithmetic.pojo.vo.BaseVo;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -50,6 +52,10 @@ public class GlobalException {
             // 如果是权限异常
             NotPermissionException ee = (NotPermissionException) e;
             re = new BaseVo(StatusEnum.TOKEN_ERROR.getCode(), "权限异常");
+        }else if(e instanceof CaptchaException){
+            re = new BaseVo(StatusEnum.Captcha_ERROR.getCode(), "验证码异常");
+        } else if(e instanceof UserExistedException){
+            re = new BaseVo(StatusEnum.USERNAME_EXISTED.getCode(), "用户已存在异常");
         } else {	// 普通异常, 输出：500 + 异常信息
             re = new BaseVo(StatusEnum.ERROR.getCode(), "未知错误，亲稍后再试呢");
         }

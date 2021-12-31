@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class UserVo {
-    private Integer id;
-
-    private String username;
+public class SignUpVo {
+    private String name;
 
     private String passwd;
 
@@ -23,4 +21,7 @@ public class UserVo {
     private String email;
 
     private String avatar;
+
+    private String captcha;
+
 }

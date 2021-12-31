@@ -20,7 +20,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册Sa-Token的路由拦截器
         registry.addInterceptor(new SaRouteInterceptor())
-                .addPathPatterns("/user/**")
-                .excludePathPatterns(List.of("/user/login","/user/statistics","/user/rank"));
+                .addPathPatterns(List.of("/user/**","/exercise/**"))
+                .excludePathPatterns(List.of("/user/login","/user/signUp","/user/captcha"));
     }
 }

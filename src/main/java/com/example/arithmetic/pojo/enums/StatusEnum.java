@@ -19,7 +19,8 @@ public enum StatusEnum{
     PASSWORD_WRONG(407),
     FILE_SIZE_ERROR(408),
     ERROR(500),
-    FILE_SAVE_ERROR(500)
+    FILE_SAVE_ERROR(500),
+    Captcha_ERROR(409)
     ;
 
     public Integer code;

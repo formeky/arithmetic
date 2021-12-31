@@ -48,4 +48,15 @@ public class UserServiceImpl implements UserService {
         userMapper.updateByEmailSelective(user);
         return true;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void insertUser(User user) {
+        User u = userMapper.selectByEmail(user.getEmail());
+        if (u!=null) {
+            throw new NotPermissionException("用户已存在");
+        }
+        userMapper.insertSelective(user);
+        return;
+    }
 }

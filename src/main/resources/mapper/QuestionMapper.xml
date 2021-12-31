@@ -23,6 +23,13 @@
     from question
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByGroup" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from question
+    where `group` = #{groupId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from question
@@ -81,6 +88,18 @@
       </if>
     </trim>
   </insert>
+  <insert id="insertList">
+    insert into question (question, answer, `status`, `group`)
+    values
+    <foreach collection="list" item="question" index="index" separator=",">
+    (
+      #{question.question,jdbcType=VARCHAR},
+      #{question.answer,jdbcType=DOUBLE},
+      #{question.status,jdbcType=INTEGER},
+      #{question.group,jdbcType=INTEGER}
+    )
+    </foreach>
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.arithmetic.pojo.entity.Question">
     <!--@mbg.generated-->
     update question
@@ -117,4 +136,6 @@
       submit_time = #{submitTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>
