@@ -1,7 +1,10 @@
 package com.example.arithmetic.mapper;
 
 import com.example.arithmetic.pojo.entity.QueGroup;
+import com.example.arithmetic.pojo.vo.RankItemVo;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author zcw
@@ -19,4 +22,6 @@ public interface QueGroupMapper {
     int updateByPrimaryKeySelective(QueGroup record);
 
     int updateByPrimaryKey(QueGroup record);
+
+    List<RankItemVo> rank();
 }

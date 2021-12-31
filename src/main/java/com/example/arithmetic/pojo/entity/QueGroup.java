@@ -33,4 +33,14 @@ public class QueGroup {
     * 用户id
     */
     private Integer ownerId;
+
+    /**
+     * 得分
+     */
+    private Double mark;
+
+    /**
+     * 正确率
+     */
+    private Integer correct;
 }

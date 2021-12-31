@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 /**
  * @author zcw
  */
@@ -19,6 +21,6 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         // 注册Sa-Token的路由拦截器
         registry.addInterceptor(new SaRouteInterceptor())
                 .addPathPatterns("/user/**")
-                .excludePathPatterns("/user/login");
+                .excludePathPatterns(List.of("/user/login","/user/statistics","/user/rank"));
     }
 }

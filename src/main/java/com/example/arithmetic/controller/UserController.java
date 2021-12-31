@@ -6,7 +6,9 @@ import com.example.arithmetic.constant.StatisticsConstant;
 import com.example.arithmetic.pojo.entity.User;
 import com.example.arithmetic.pojo.enums.StatusEnum;
 import com.example.arithmetic.pojo.vo.BaseVo;
+import com.example.arithmetic.pojo.vo.RankItemVo;
 import com.example.arithmetic.pojo.vo.UserVo;
+import com.example.arithmetic.services.SystemService;
 import com.example.arithmetic.services.UserService;
 import com.example.arithmetic.utils.UserConvert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,8 +28,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @PostMapping("login")
     public BaseVo login(@RequestBody UserVo user){
@@ -56,15 +57,5 @@ public class UserController {
         return new BaseVo(StatusEnum.SUCCESS.getCode(),
                 userService.updateUser(UserConvert.voConvert(user)),
                 "用户信息" );
-    }
-
-    @GetMapping("statistics")
-    public HashMap<String,Integer> statistics(){
-        HashMap map = new HashMap();
-        map.put("online",redisTemplate.opsForValue().get(StatisticsConstant.ONLINE_USER));
-        map.put("allUser",redisTemplate.opsForValue().get(StatisticsConstant.ALL_USER));
-        map.put("problem",redisTemplate.opsForValue().get(StatisticsConstant.PROBLEM));
-        map.put("runDay",redisTemplate.opsForValue().get(StatisticsConstant.RUN_DAYS));
-        return map;
     }
 }
