@@ -4,4 +4,4 @@
 ###2.相关依赖以后根据个人情况配置application.yml中的配置
 ###3.运行启动类即可
 
->本仓库只包含后端代码，前端代码在
+>本仓库只包含后端代码，前端代码在https://github.com/formeky/arthimtic-front.git
